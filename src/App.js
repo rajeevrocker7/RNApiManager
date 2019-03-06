@@ -14,9 +14,7 @@ import {
 } from 'react-navigation';
 //redux, thunk, react-redux
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import ReduxThunk from 'redux-thunk';
-import reducers from './redux/reducers';
+import AppStore from './redux/AppStore';
 //screens
 import MainScreen from './screens/MainScreen';
 
@@ -29,11 +27,8 @@ class App extends Component {
 
   //SCREEN
   render() {
-    //createStore
-    const storeApp = createStore(reducers, {}, applyMiddleware(ReduxThunk));
-
     return (
-      <Provider store={storeApp}>
+      <Provider store={AppStore}>
         <AppContainer />
       </Provider>
     );

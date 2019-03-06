@@ -10,4 +10,12 @@ export const EMP_SAVE_CHANGE_SUCCESS = 'EMP_SAVE_CHANGE_SUCCESS';
 export const EMP_DELETE_SUCCESS = 'EMP_DELETE_SUCCESS';
 export const EMP_RESET_FOR_ADD = 'EMP_RESET_FOR_ADD';
 export const TEST_API = 'TEST_API';
-export const API = 'API';
+
+export const GET_USERS_LIST = 'GET_USERS_LIST';
+export const GET_SINGLE_USER = 'GET_SINGLE_USER';
+export const POST_REGISTER = 'POST_REGISTER';
+
+export const API = "API";
+export const API_START = "API_START";
+export const API_END = "API_END";
+export const API_ERROR = "API_ERROR";

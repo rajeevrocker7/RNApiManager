@@ -5,6 +5,12 @@ export const API_CONST = {
     LOGIN: 'login',
     LOGOUT: 'logut',
     GET_MOODS: 'getMoods',
-    SAVE_MOODS: 'saveMood'
+    SAVE_MOODS: 'saveMood',
+
+    //https://reqres.in/
+    BASE_URL_TEST: 'https://reqres.in/api/',
+    GET_USERS_LIST: 'users',
+    GET_SINGLE_USER: 'users/2',
+    POST_REGISTER: 'register',
 
 };
