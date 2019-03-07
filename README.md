@@ -1,2 +1,2 @@
-# RNParserTest
-React Native -> RestFul API setup, JSON parsing and success, failure callback via Redux Custom Middleware.
+# RNApiManager
+A React Native RestFul API setup along with JSON parsing, success & failure callback with Custom Middleware and redux-thunk.
