@@ -21,7 +21,11 @@ class MainScreen extends Component {
     //METHOD: HELPER
     onPostBtnClick = () => {
         Toast.show('POST');
-        this.props.postRegisterUser();
+        let data_obj = {
+            "email": "rajeev@algoworks.com",
+            "password": "pistol_101"
+        };
+        this.props.postRegisterUser(data_obj);
     };
 
 
@@ -49,7 +53,7 @@ class MainScreen extends Component {
 
         return (
             <View style={{ flex: 1 }}>
-                <Text style={welcome}>Welcome to React Native Parser Test!</Text>
+                <Text style={welcome}>Welcome to React Native API Manager!</Text>
                 <Text style={smallTxt}>GET: https://reqres.in/api/users </Text>
                 <Text style={smallTxt}>POST: https://reqres.in/api/register </Text>
 

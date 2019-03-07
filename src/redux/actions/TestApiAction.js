@@ -32,22 +32,20 @@ export const fetchUsersList = () => {
     //returns a funtion, not an action object
     return apiAction({
         url: url_,
+        method: "GET",
         onSuccess: getUsersSuccessAction,
         onFailure: () => { console.log("Error occured at: fetchUsersList") },
         label: GET_USERS_LIST
     });
 };
 //POST REQUEST
-export const postRegisterUser = () => {
+export const postRegisterUser = (data_obj) => {
     const url_ = `${API_CONST.BASE_URL_TEST}${API_CONST.POST_REGISTER}`;
     //returns a funtion, not an action object
     return apiAction({
         url: url_,
         method: "POST",
-        data: {
-            "email": "rajeev@algoworks.com",
-            "password": "pistol_101"
-        },
+        data: data_obj,
         onSuccess: registerUserSuccessAction,
         onFailure: () => { console.log("Error occured at: postRegisterUser") },
         label: POST_REGISTER
