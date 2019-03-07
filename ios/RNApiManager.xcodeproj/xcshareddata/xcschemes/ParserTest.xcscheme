@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "ParserTest.app"
-               BlueprintName = "ParserTest"
-               ReferencedContainer = "container:ParserTest.xcodeproj">
+               BuildableName = "RNApiManager.app"
+               BlueprintName = "RNApiManager"
+               ReferencedContainer = "container:RNApiManager.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ParserTestTests.xctest"
-               BlueprintName = "ParserTestTests"
-               ReferencedContainer = "container:ParserTest.xcodeproj">
+               BuildableName = "RNApiManagerTests.xctest"
+               BlueprintName = "RNApiManagerTests"
+               ReferencedContainer = "container:RNApiManager.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ParserTestTests.xctest"
-               BlueprintName = "ParserTestTests"
-               ReferencedContainer = "container:ParserTest.xcodeproj">
+               BuildableName = "RNApiManagerTests.xctest"
+               BlueprintName = "RNApiManagerTests"
+               ReferencedContainer = "container:RNApiManager.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ParserTest.app"
-            BlueprintName = "ParserTest"
-            ReferencedContainer = "container:ParserTest.xcodeproj">
+            BuildableName = "RNApiManager.app"
+            BlueprintName = "RNApiManager"
+            ReferencedContainer = "container:RNApiManager.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ParserTest.app"
-            BlueprintName = "ParserTest"
-            ReferencedContainer = "container:ParserTest.xcodeproj">
+            BuildableName = "RNApiManager.app"
+            BlueprintName = "RNApiManager"
+            ReferencedContainer = "container:RNApiManager.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ParserTest.app"
-            BlueprintName = "ParserTest"
-            ReferencedContainer = "container:ParserTest.xcodeproj">
+            BuildableName = "RNApiManager.app"
+            BlueprintName = "RNApiManager"
+            ReferencedContainer = "container:RNApiManager.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

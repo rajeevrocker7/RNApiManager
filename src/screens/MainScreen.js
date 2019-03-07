@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Toast from 'react-native-simple-toast';
-import ApiSingleton from '../ApiManager/ApiSingleton';
-import { CustomLoader } from '../components';
+import ApiSingleton from '../apiManager/ApiSingleton';
+import { CustomLoader, Header } from '../components';
 import { connect } from 'react-redux';
 import { postRegisterUser, fetchUsersList } from '../redux/actions';
 
@@ -53,6 +53,7 @@ class MainScreen extends Component {
 
         return (
             <View style={{ flex: 1 }}>
+                <Header headerText={"RNApiManager"}></Header>
                 <Text style={welcome}>Welcome to React Native API Manager!</Text>
                 <Text style={smallTxt}>GET: https://reqres.in/api/users </Text>
                 <Text style={smallTxt}>POST: https://reqres.in/api/register </Text>
@@ -71,8 +72,6 @@ class MainScreen extends Component {
                      </Text>
                 </TouchableOpacity>
 
-                {this.renderLoader()}
-
                 {
                     (data)
                         ?
@@ -87,6 +86,8 @@ class MainScreen extends Component {
                         :
                         <Text></Text>
                 }
+
+                {this.renderLoader()}
 
             </View>
         );

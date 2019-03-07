@@ -1,4 +1,4 @@
-package com.parsertest;
+package com.rajeev.RNApiManager;
 
 import android.app.Application;
 
