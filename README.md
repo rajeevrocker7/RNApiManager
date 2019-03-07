@@ -1,2 +1,2 @@
 # RNParserTest
-React Native -> JSON parsing and success, failure callback via Redux Custom Middleware.
+React Native -> RestFul API setup, JSON parsing and success, failure callback via Redux Custom Middleware.
