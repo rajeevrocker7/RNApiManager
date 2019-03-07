@@ -4,17 +4,15 @@ import {
     GET_SINGLE_USER,
     POST_REGISTER,
 
-    API_START,
-    API_END,
-    API_ERROR
 } from "../actions/types";
 
 //INITIAL_STATE
 const INITIAL_STATE = {
     data: {},
-    token: '',
-    isLoadingData: false
+    userData: {},
+    token: ''
 };
+
 //reducer
 export default (state = INITIAL_STATE, action) => {
 
@@ -31,23 +29,13 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 token: action.payload.token
             };
+            
+        case GET_SINGLE_USER:
+            return {
+                ...state,
+                userData: action.payload
+            };
 
-        case API_START:
-            if (action.payload === GET_USERS_LIST
-                || action.payload === POST_REGISTER) {
-                return {
-                    ...state,
-                    isLoadingData: true
-                };
-            }
-        case API_END:
-            if (action.payload === GET_USERS_LIST
-                || action.payload === POST_REGISTER) {
-                return {
-                    ...state,
-                    isLoadingData: false
-                };
-            }
 
         default:
             return state;

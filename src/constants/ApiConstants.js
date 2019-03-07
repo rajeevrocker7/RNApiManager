@@ -10,7 +10,7 @@ export const API_CONST = {
     //https://reqres.in/
     BASE_URL_TEST: 'https://reqres.in/api/',
     GET_USERS_LIST: 'users',
-    GET_SINGLE_USER: 'users/2',
+    GET_SINGLE_USER: 'users/',
     POST_REGISTER: 'register',
 
 };

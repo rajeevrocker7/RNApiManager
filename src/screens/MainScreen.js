@@ -4,7 +4,7 @@ import Toast from 'react-native-simple-toast';
 import ApiSingleton from '../apiManager/ApiSingleton';
 import { CustomLoader, Header } from '../components';
 import { connect } from 'react-redux';
-import { postRegisterUser, fetchUsersList } from '../redux/actions';
+import { postRegisterUser, fetchUsersList, fetchSingleUser } from '../redux/actions';
 
 class MainScreen extends Component {
 
@@ -16,6 +16,12 @@ class MainScreen extends Component {
     onGetUsersClick = () => {
         Toast.show('GET');
         this.props.fetchUsersList();
+    };
+
+    //METHOD: HELPER
+    onSingleUserClick = () => {
+        Toast.show('GET USER INFO');
+        this.props.fetchSingleUser(3);
     };
 
     //METHOD: HELPER
@@ -42,12 +48,14 @@ class MainScreen extends Component {
     //SCREEN
     render() {
 
-        const { smallTxt, txts, postTxts, welcome, btns, instructions } = styles;
-        const { token, data } = this.props;
+        const { smallTxt, txts, userInfoTxt, postTxts, welcome, btns, getBtn, getUserBtn, postBtn } = styles;
+        const { token, data, userData } = this.props;
         const { data: dataArr } = data;
+        const { data: userObj } = userData;
 
         console.log(`RENDER: : ->\n\n`);
         console.log(`dataArr: '${JSON.stringify(dataArr)}' `);
+        console.log(`userObj: '${JSON.stringify(userObj)}' `);
         console.log(`token: '${token}' `);
 
 
@@ -56,18 +64,26 @@ class MainScreen extends Component {
                 <Header headerText={"RNApiManager"}></Header>
                 <Text style={welcome}>Welcome to React Native API Manager!</Text>
                 <Text style={smallTxt}>GET: https://reqres.in/api/users </Text>
+                <Text style={smallTxt}>GET USER INFO: https://reqres.in/api/users/3 </Text>
                 <Text style={smallTxt}>POST: https://reqres.in/api/register </Text>
 
                 <TouchableOpacity style={btns}
                     onPress={this.onGetUsersClick} >
-                    <Text style={instructions}>
+                    <Text style={getBtn}>
                         Request a GET API
                      </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={btns}
+                    onPress={this.onSingleUserClick} >
+                    <Text style={getUserBtn}>
+                        Request a GET API for User Info
+                     </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={btns}
                     onPress={this.onPostBtnClick} >
-                    <Text style={instructions}>
+                    <Text style={postBtn}>
                         Request a POST API
                      </Text>
                 </TouchableOpacity>
@@ -76,6 +92,13 @@ class MainScreen extends Component {
                     (data)
                         ?
                         <Text style={txts}>{JSON.stringify(data)}</Text>
+                        :
+                        <Text></Text>
+                }
+                {
+                    (userData)
+                        ?
+                        <Text style={userInfoTxt}>{JSON.stringify(userData)}</Text>
                         :
                         <Text></Text>
                 }
@@ -113,7 +136,7 @@ const styles = StyleSheet.create({
     btns: {
         width: '60%',
         padding: 5,
-        margin: 2,
+        margin: 3,
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center',
@@ -124,13 +147,14 @@ const styles = StyleSheet.create({
     },
     welcome: {
         fontSize: 20,
-        color: 'black',
+        color: '#091f9b',
         textAlign: 'center',
         alignSelf: 'center',
+        textDecorationLine: 'underline',
         margin: 10
     },
     smallTxt: {
-        fontSize: 16,
+        fontSize: 15,
         color: 'black',
         textAlign: 'center',
         alignSelf: 'center',
@@ -141,19 +165,38 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#026628',
         padding: 4,
-        margin: 3
+        margin: 5
+    },
+    userInfoTxt: {
+        fontSize: 14,
+        textAlign: 'center',
+        color: '#d6045b',
+        padding: 4,
+        margin: 5
     },
     postTxts: {
         fontSize: 14,
         textAlign: 'center',
         color: '#091f9b',
         padding: 4,
-        margin: 3
+        margin: 5
     },
-    instructions: {
+    getBtn: {
         fontSize: 16,
         textAlign: 'center',
-        color: '#007FFF',
+        color: '#026628',
+        padding: 5,
+    },
+    getUserBtn: {
+        fontSize: 16,
+        textAlign: 'center',
+        color: '#d6045b',
+        padding: 5,
+    },
+    postBtn: {
+        fontSize: 16,
+        textAlign: 'center',
+        color: '#091f9b',
         padding: 5,
     },
 });
@@ -162,18 +205,30 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     const {
         data = {},
-        token = '',
-        isLoadingData = false } = state.test_api_reducer;
+        userData = userInfo,
+        token = '' } = state.test_api_reducer;
+
+    const {
+        error = '',
+        isLoadingData = false } = state.api_reducer;
+
+    // if (error === 'ERR-Something went wrong!') {
+    //     userData = { error }
+    // }
 
     return {
         data: data,
+        userData: userData,
         token: token,
-        isLoadingData: isLoadingData
+
+        error: error,
+        isLoadingData: isLoadingData,
+
     };
 };
 
 export default connect(mapStateToProps,
     {
-        postRegisterUser, fetchUsersList
+        postRegisterUser, fetchUsersList, fetchSingleUser
     }
 )(MainScreen);
