@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import Toast from 'react-native-simple-toast';
-import ApiSingleton from '../apiManager/ApiSingleton';
 import { CustomLoader, Header } from '../components';
 import { connect } from 'react-redux';
 import { postRegisterUser, fetchUsersList, fetchSingleUser } from '../redux/actions';
@@ -34,10 +33,28 @@ class MainScreen extends Component {
         this.props.postRegisterUser(data_obj);
     };
 
+    onTestModelsData = () => {
+
+        const { userListModel, userModel, userRegisterModel, apiModel } = this.props;
+        try {
+            console.log(`userListModel: *****************: `);
+            console.log(userListModel);
+
+            console.log(`userModel: *****************: `);
+            console.log(userModel);
+
+            console.log(`userRegisterModel: *****************: `);
+            console.log(userRegisterModel);
+
+        } catch (error) {
+            console.warn(error);
+        }
+    };
+
 
     renderLoader = () => {
-        const { isLoadingData = false } = this.props;
-        if (isLoadingData) {
+        const { apiModel } = this.props;
+        if (apiModel.API_IS_LOADING) {
             return (
                 <View style={styles.containerLoaderStyle}>
                     <CustomLoader />
@@ -48,71 +65,85 @@ class MainScreen extends Component {
     //SCREEN
     render() {
 
-        const { smallTxt, txts, userInfoTxt, postTxts, welcome, btns, getBtn, getUserBtn, postBtn } = styles;
-        const { token, data, userData } = this.props;
-        const { data: dataArr } = data;
-        const { data: userObj } = userData;
+        const { smallTxt, txts, userInfoTxt, postTxts, welcome, btns, getBtn, getUserBtn, postBtn, testMBtn } = styles;
+        const { userListModel, userModel, userRegisterModel, apiModel } = this.props;
 
-        console.log(`RENDER: : ->\n\n`);
+        const { data: dataArr } = userListModel;
+        const { data: userObj } = userModel;
+        const { token } = userRegisterModel;
+        const { API_IS_LOADING } = apiModel;
+
+        console.log(`RENDER: *****************: : ->\n\n`);
         console.log(`dataArr: '${JSON.stringify(dataArr)}' `);
         console.log(`userObj: '${JSON.stringify(userObj)}' `);
         console.log(`token: '${token}' `);
+        console.log(`API_IS_LOADING: '${API_IS_LOADING}' `);
 
 
         return (
-            <View style={{ flex: 1 }}>
-                <Header headerText={"RNApiManager"}></Header>
-                <Text style={welcome}>Welcome to React Native API Manager!</Text>
-                <Text style={smallTxt}>GET: https://reqres.in/api/users </Text>
-                <Text style={smallTxt}>GET USER INFO: https://reqres.in/api/users/3 </Text>
-                <Text style={smallTxt}>POST: https://reqres.in/api/register </Text>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={{ flex: 1 }}>
+                    <Header headerText={"RNApiManager"}></Header>
 
-                <TouchableOpacity style={btns}
-                    onPress={this.onGetUsersClick} >
-                    <Text style={getBtn}>
-                        Request a GET API
+                    <Text style={welcome}>Welcome to React Native API Manager!</Text>
+                    <Text style={smallTxt}>GET: https://reqres.in/api/users </Text>
+                    <Text style={smallTxt}>GET USER INFO: https://reqres.in/api/users/3 </Text>
+                    <Text style={smallTxt}>POST: https://reqres.in/api/register </Text>
+
+                    <TouchableOpacity style={btns}
+                        onPress={this.onGetUsersClick} >
+                        <Text style={getBtn}>
+                            Request a GET API
                      </Text>
-                </TouchableOpacity>
+                    </TouchableOpacity>
 
-                <TouchableOpacity style={btns}
-                    onPress={this.onSingleUserClick} >
-                    <Text style={getUserBtn}>
-                        Request a GET API for User Info
+                    <TouchableOpacity style={btns}
+                        onPress={this.onSingleUserClick} >
+                        <Text style={getUserBtn}>
+                            Request a GET API for User Info
                      </Text>
-                </TouchableOpacity>
+                    </TouchableOpacity>
 
-                <TouchableOpacity style={btns}
-                    onPress={this.onPostBtnClick} >
-                    <Text style={postBtn}>
-                        Request a POST API
+                    <TouchableOpacity style={btns}
+                        onPress={this.onPostBtnClick} >
+                        <Text style={postBtn}>
+                            Request a POST API
                      </Text>
-                </TouchableOpacity>
+                    </TouchableOpacity>
 
-                {
-                    (data)
-                        ?
-                        <Text style={txts}>{JSON.stringify(data)}</Text>
-                        :
-                        <Text></Text>
-                }
-                {
-                    (userData)
-                        ?
-                        <Text style={userInfoTxt}>{JSON.stringify(userData)}</Text>
-                        :
-                        <Text></Text>
-                }
-                {
-                    (token)
-                        ?
-                        <Text style={postTxts}>Generated Token: {token.toString()}</Text>
-                        :
-                        <Text></Text>
-                }
+                    {
+                        (dataArr)
+                            ?
+                            <Text style={txts}>{JSON.stringify(dataArr)}</Text>
+                            :
+                            <Text></Text>
+                    }
+                    {
+                        (userObj)
+                            ?
+                            <Text style={userInfoTxt}>{JSON.stringify(userObj)}</Text>
+                            :
+                            <Text></Text>
+                    }
+                    {
+                        (token)
+                            ?
+                            <Text style={postTxts}>Generated Token: {token.toString()}</Text>
+                            :
+                            <Text></Text>
+                    }
 
-                {this.renderLoader()}
+                    <TouchableOpacity style={btns}
+                        onPress={this.onTestModelsData} >
+                        <Text style={testMBtn}>
+                            Test Data with Models (See Logs)
+                     </Text>
+                    </TouchableOpacity>
 
-            </View>
+                    {this.renderLoader()}
+
+                </View>
+            </ScrollView>
         );
     }
 }
@@ -199,31 +230,31 @@ const styles = StyleSheet.create({
         color: '#091f9b',
         padding: 5,
     },
+    testMBtn: {
+        fontSize: 16,
+        textAlign: 'center',
+        color: '#090d0b',
+        padding: 5,
+    },
 });
 
 //FUNCTION TO CONNECT:
 const mapStateToProps = (state) => {
+    // from API DATA REDUCERS
     const {
-        data = {},
-        userData = userInfo,
-        token = '' } = state.test_api_reducer;
-
-    const {
-        error = '',
-        isLoadingData = false } = state.api_reducer;
-
-    // if (error === 'ERR-Something went wrong!') {
-    //     userData = { error }
-    // }
+        userListModel,
+        userModel,
+        userRegisterModel
+    } = state.test_api_reducer;
+    // from API REDUCERS
+    const { apiModel } = state.api_reducer;
 
     return {
-        data: data,
-        userData: userData,
-        token: token,
+        userListModel: userListModel,
+        userModel: userModel,
+        userRegisterModel: userRegisterModel,
 
-        error: error,
-        isLoadingData: isLoadingData,
-
+        apiModel: apiModel
     };
 };
 

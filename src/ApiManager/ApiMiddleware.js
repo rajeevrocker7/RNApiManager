@@ -4,7 +4,7 @@ import { apiError, apiStart, apiEnd } from "../redux/actions/APIAction";
 import { API_CONST } from '../constants/ApiConstants';
 
 //1. Set up the middleware
-const ApiMiddleware = ({ dispatch }) => next => action => {
+const ApiMiddleware = ({ dispatch, getState }) => next => action => {
     next(action);
 
     //2. ONLY DO FOR type='API' actions, Dismiss irrelevant action types
@@ -28,7 +28,7 @@ const ApiMiddleware = ({ dispatch }) => next => action => {
 
     //4.Handle any HTTP method
     const dataOrParams = ["GET", "DELETE"].includes(method) ? "params" : "data";
-    
+
 
     //5. Handle Globals/axios default configs
     axios.defaults.baseURL = API_CONST.BASE_URL_TEST || "";
@@ -64,9 +64,6 @@ const ApiMiddleware = ({ dispatch }) => next => action => {
         })
         .finally(() => {
             if (label) {
-                console.log(`ApiMiddleware: -> finally: ->\n `);
-                console.log(label);
-
                 dispatch(apiEnd(label)); // send apiEnd action 
             }
         });

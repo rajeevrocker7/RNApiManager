@@ -6,11 +6,18 @@ import {
 
 } from "../actions/types";
 
+//models
+import {
+    createUserListModel,
+    createUserModel,
+    createUserRegisterModel
+} from '../../models/ModelUtils';
+
 //INITIAL_STATE
 const INITIAL_STATE = {
-    data: {},
-    userData: {},
-    token: ''
+    userListModel: createUserListModel(),
+    userModel: createUserModel(),
+    userRegisterModel: createUserRegisterModel(),
 };
 
 //reducer
@@ -20,20 +27,20 @@ export default (state = INITIAL_STATE, action) => {
         case GET_USERS_LIST:
             const newStateUsers = {
                 ...state,
-                data: action.payload
+                userListModel: createUserListModel(action.payload),
             };
             return newStateUsers;
+
+        case GET_SINGLE_USER:
+            return {
+                ...state,
+                userModel: createUserModel(action.payload),
+            };
 
         case POST_REGISTER:
             return {
                 ...state,
-                token: action.payload.token
-            };
-            
-        case GET_SINGLE_USER:
-            return {
-                ...state,
-                userData: action.payload
+                userRegisterModel: createUserRegisterModel(action.payload),
             };
 
 
