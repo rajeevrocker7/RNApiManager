@@ -3,8 +3,8 @@ A React Native RestFul API setup along with JSON parsing, success & failure call
 
 # Features 
 ApiManager: 
-    Single Api Middleware for Restful API Calls
-    Api Call Singleton
+    1. Single Api Middleware for Restful API Calls
+    2. Api Call Singleton
 
 ModelManager:
     ModelBuilder & ArrayOfObjectBuilder for JavaScript Object / Array / Model class
