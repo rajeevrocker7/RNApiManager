@@ -1,11 +1,12 @@
 import { API_CONST } from '../constants/ApiConstants';
+import { API } from '../redux/actions/types';
 
 let instance = null;
 
 class ApiSingleton {
     constructor() {
         if (!instance) {
-            this.baseUrl = API_CONST.BASE_URL_FB;
+            this.baseUrl = API_CONST.BASE_URL_TEST;
             this.instance = this;
         }
 
@@ -16,19 +17,35 @@ class ApiSingleton {
         return new ApiSingleton();
     };
 
-    //METHOD: GET REQUEST
-    getMoviesFromApi = async () => {
-        try {
-            const url = `${this.baseUrl}${API_CONST.GET_MOVIES}`;
-            console.log(`ApiSingleton: getMoviesFromApi: ->\n ${url}`);
+    //--------------- API REQUESTING ------------------//
 
-            let response = await fetch(url);
-            let responseJson = await response.json();
-            return responseJson;
-        } catch (error) {
-            console.error(error);
-        }
+    // METHOD: TO RETURN ACTION FOR API_MIDDLEWARE FOR API CALLS
+    apiAction = ({
+        url = "",
+        method = "GET",
+        data = null,
+        accessToken = null,
+        onSuccess = () => { },
+        onFailure = () => { },
+        label = "",
+        headersOverride = null
+    }) => {
+        //return action object of type='API'
+        return {
+            type: API,
+            payload: {
+                url,
+                method,
+                data,
+                accessToken,
+                onSuccess,
+                onFailure,
+                label,
+                headersOverride
+            }
+        };
     };
+
 
 }
 

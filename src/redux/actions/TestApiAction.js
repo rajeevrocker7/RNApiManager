@@ -1,11 +1,11 @@
 import {
-    API,
     GET_USERS_LIST,
     GET_SINGLE_USER,
     POST_REGISTER
 } from './types';
 
 import { API_CONST } from '../../constants/ApiConstants';
+import ApiSingleton from '../../apiManager/ApiSingleton';
 
 //ACTION CREATORS: synchronous
 export const getUsersSuccessAction = (data) => {
@@ -30,15 +30,12 @@ export const registerUserSuccessAction = (data) => {
 };
 
 
-/**
- * HELPERS:ACTION CREATORS FOR API CALLS via Redux-Thunk
- * ACTION CREATORS: a-synchronous
- */
+
 //GET REQUEST
 export const fetchUsersList = () => {
     const url_ = `${API_CONST.BASE_URL_TEST}${API_CONST.GET_USERS_LIST}`;
     //returns a funtion, not an action object
-    return apiAction({
+    return ApiSingleton.getInstance().apiAction({
         url: url_,
         method: "GET",
         onSuccess: getUsersSuccessAction,
@@ -51,7 +48,7 @@ export const fetchUsersList = () => {
 export const fetchSingleUser = (id) => {
     const url_ = `${API_CONST.BASE_URL_TEST}${API_CONST.GET_SINGLE_USER}${id}`;
     //returns a funtion, not an action object
-    return apiAction({
+    return ApiSingleton.getInstance().apiAction({
         url: url_,
         method: "GET",
         onSuccess: getSingleUserAction,
@@ -64,7 +61,7 @@ export const fetchSingleUser = (id) => {
 export const postRegisterUser = (data_obj) => {
     const url_ = `${API_CONST.BASE_URL_TEST}${API_CONST.POST_REGISTER}`;
     //returns a funtion, not an action object
-    return apiAction({
+    return ApiSingleton.getInstance().apiAction({
         url: url_,
         method: "POST",
         data: data_obj,
@@ -74,30 +71,3 @@ export const postRegisterUser = (data_obj) => {
     });
 };
 
-
-// METHOD: TO RETURN ACTION FOR API_MIDDLEWARE FOR API CALLS
-export const apiAction = ({
-    url = "",
-    method = "GET",
-    data = null,
-    accessToken = null,
-    onSuccess = () => { },
-    onFailure = () => { },
-    label = "",
-    headersOverride = null
-}) => {
-    //return action object of type='API'
-    return {
-        type: API,
-        payload: {
-            url,
-            method,
-            data,
-            accessToken,
-            onSuccess,
-            onFailure,
-            label,
-            headersOverride
-        }
-    };
-};

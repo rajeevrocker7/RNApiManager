@@ -9,7 +9,7 @@ import {
 import { Provider } from 'react-redux';
 import AppStore from './redux/AppStore';
 //screens
-import MainScreen from './screens/MainScreen';
+import MainScreen from './screens/Main/View/MainScreen';
 
 
 class App extends Component {

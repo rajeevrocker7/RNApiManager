@@ -1,6 +1,6 @@
 //redux, thunk, custom middleware, react-redux
 import { createStore, applyMiddleware } from 'redux';
-import ReduxThunk from 'redux-thunk';
+import thunk from 'redux-thunk';
 import ApiMiddleware from "../apiManager/ApiMiddleware";
 import rootReducer from './reducers';
 
@@ -8,6 +8,6 @@ import rootReducer from './reducers';
 const AppStore = createStore(
     rootReducer,
     {},
-    applyMiddleware(ReduxThunk, ApiMiddleware));
+    applyMiddleware(thunk, ApiMiddleware));
 
 export default AppStore;

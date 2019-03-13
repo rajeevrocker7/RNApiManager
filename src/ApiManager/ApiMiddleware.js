@@ -3,6 +3,8 @@ import { API } from "../redux/actions/types";
 import { apiError, apiStart, apiEnd } from "../redux/actions/APIAction";
 import { API_CONST } from '../constants/ApiConstants';
 
+//--------------- API MIDDLEWARE ------------------//
+
 //1. Set up the middleware
 const ApiMiddleware = ({ dispatch, getState }) => next => action => {
     next(action);
@@ -10,7 +12,7 @@ const ApiMiddleware = ({ dispatch, getState }) => next => action => {
     //2. ONLY DO FOR type='API' actions, Dismiss irrelevant action types
     if (action.type !== API)
         return;
-    //3. Extract important variables from the action payload
+    //3. Extract imp. variables from the action payload
     const {
         url,
         method,
