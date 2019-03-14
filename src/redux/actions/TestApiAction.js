@@ -35,11 +35,11 @@ export const registerUserSuccessAction = (data) => {
 export const fetchUsersList = () => {
     const url_ = `${API_CONST.BASE_URL_TEST}${API_CONST.GET_USERS_LIST}`;
     //returns a funtion, not an action object
-    return ApiSingleton.getInstance().apiAction({
+    return ApiSingleton.getInstance().apiActionCall({
         url: url_,
         method: "GET",
         onSuccess: getUsersSuccessAction,
-        onFailure: () => { console.log("Error occured at: fetchUsersList") },
+        onFailure: () => { console.log("API Error occured at: fetchUsersList") },
         label: GET_USERS_LIST
     });
 };
@@ -48,11 +48,11 @@ export const fetchUsersList = () => {
 export const fetchSingleUser = (id) => {
     const url_ = `${API_CONST.BASE_URL_TEST}${API_CONST.GET_SINGLE_USER}${id}`;
     //returns a funtion, not an action object
-    return ApiSingleton.getInstance().apiAction({
+    return ApiSingleton.getInstance().apiActionCall({
         url: url_,
         method: "GET",
         onSuccess: getSingleUserAction,
-        onFailure: () => { console.log("Error occured at: fetchSingleUser") },
+        onFailure: () => { console.log("API Error occured at: fetchSingleUser") },
         label: GET_SINGLE_USER
     });
 };
@@ -61,12 +61,12 @@ export const fetchSingleUser = (id) => {
 export const postRegisterUser = (data_obj) => {
     const url_ = `${API_CONST.BASE_URL_TEST}${API_CONST.POST_REGISTER}`;
     //returns a funtion, not an action object
-    return ApiSingleton.getInstance().apiAction({
+    return ApiSingleton.getInstance().apiActionCall({
         url: url_,
         method: "POST",
         data: data_obj,
         onSuccess: registerUserSuccessAction,
-        onFailure: () => { console.log("Error occured at: postRegisterUser") },
+        onFailure: () => { console.log("API Error occured at: postRegisterUser") },
         label: POST_REGISTER
     });
 };

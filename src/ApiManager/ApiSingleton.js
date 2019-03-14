@@ -20,7 +20,7 @@ class ApiSingleton {
     //--------------- API REQUESTING ------------------//
 
     // METHOD: TO RETURN ACTION FOR API_MIDDLEWARE FOR API CALLS
-    apiAction = ({
+    apiActionCall = ({
         url = "",
         method = "GET",
         data = null,

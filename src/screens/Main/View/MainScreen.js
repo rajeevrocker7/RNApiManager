@@ -62,6 +62,14 @@ class MainScreen extends Component {
         }
     };
 
+    //RENDER ERROR
+    renderApiError = () => {
+        const { apiModel } = this.props;
+        if (apiModel.API_ERR !== "Something went wrong!") {
+            Toast.show(apiModel.API_ERR);
+        }
+    }
+
     //RENDER HELPER for LOADING
     renderLoader = () => {
         const { apiModel } = this.props;
@@ -167,6 +175,7 @@ class MainScreen extends Component {
 
                 </View>
                 {this.renderLoader()}
+                {this.renderApiError()}
             </View>
 
         );

@@ -47,18 +47,14 @@ export default (state = INITIAL_STATE, action) => {
 
         case API_ERROR:
             console.log(action.type, action.payload);
-            if (action.payload === GET_USERS_LIST
-                || action.payload === GET_SINGLE_USER
-                || action.payload === POST_REGISTER) {
-                return {
-                    ...state,
-                    apiModel: createApiModel({
-                        API_IS_LOADING: false,
-                        API_ERR: 'Error/-Something went wrong!'
-                    }),
+            return {
+                ...state,
+                apiModel: createApiModel({
+                    API_IS_LOADING: false,
+                    API_ERR: 'API Error / Something went wrong!'
+                }),
 
-                };
-            }
+            };
 
         default:
             return state;

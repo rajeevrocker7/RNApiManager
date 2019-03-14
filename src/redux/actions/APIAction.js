@@ -17,5 +17,5 @@ export const apiEnd = label => ({
 
 export const apiError = error => ({
     type: API_ERROR,
-    error
+    payload: error
 });

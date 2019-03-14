@@ -6,14 +6,6 @@ import {
 
 } from "../actions/types";
 
-//models
-// import {
-//     createUserListModel,
-//     createUserModel,
-//     createSingleUserResponseModel,
-//     createUserRegisterModel
-// } from '../../models/ModelUtils';
-
 //INITIAL_STATE
 const INITIAL_STATE = {
     userList_Res: {},
