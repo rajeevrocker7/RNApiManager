@@ -14,4 +14,8 @@ MVP:
 
 API Loader: 
     Single loader for all API Calls in every Screen, rather than managing component loader state in every component in Application.         
+
+# Working GIF:
+   ![](https://media.giphy.com/media/623P3cpqyWw2UTgfEB/giphy.gif)
    
+  
