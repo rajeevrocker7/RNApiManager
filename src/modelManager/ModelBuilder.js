@@ -34,7 +34,11 @@ class ModelBuilder {
      *  @param {POJO/MODEL property Name } propertyName
      */
     setProperty = (key, propertyName) => {
-        this.instance[propertyName] = this.obj[key];
+        if (this.obj.hasOwnProperty(key))
+            this.instance[propertyName] = this.obj[key];
+        else
+            this.instance[propertyName] = null;
+            
         return this;
     };
 

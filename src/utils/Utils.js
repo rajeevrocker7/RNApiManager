@@ -100,19 +100,55 @@ export const retrieveItem = async (key) => {
     }
 };
 
-// // TO RESET TO ANOTHER STACK
-// export const resetRoute = (stackName, paramFromW ) => {
-//     this.props
-//         .navigation
-//         .dispatch(StackActions.reset({
-//             index: 0,
-//             key: null,   //this is Important
-//             actions: [
-//                 NavigationActions.navigate({
-//                     routeName: stackName,
-//                     params: { fromWhere: paramFromW }
-//                 })
-//             ]
-//         }));
+//-----------check 'key' exists in json
+// const object1 = new Object();
+// object1.property1 = 42;
+
+// console.log(object1.hasOwnProperty('property1'));
+// // expected output: true
+
+// console.log(object1.hasOwnProperty('toString'));
+// // expected output: false
+
+//--------------find 'key' value in json--------
+
+// const data = {
+//     "Records": {
+//         "key": "112"
+//     }
 // };
+
+// const data2 = {
+//     "Records": {
+//         "test": { "key": "512" }
+//     }
+// };
+
+// const data3 = {
+//     "Records": {
+//         "test": {
+//             "test2": [
+//                 { "key": "334" },
+//             ]
+//         }
+//     }
+// };
+
+// function searchKey(obj, key = 'key') {
+//     return Object.keys(obj).reduce((finalObj, objKey) => {
+//         if (objKey !== key) {
+//             return searchKey(obj[objKey]);
+//         } else {
+//             return finalObj = obj[objKey];
+//         }
+
+//     }, [])
+// }
+
+// const result = searchKey(data);
+// const result2 = searchKey(data2);
+// const result3 = searchKey(data3);
+// console.log(result);
+// console.log(result2);
+// console.log(result3);
 
