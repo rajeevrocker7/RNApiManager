@@ -5,6 +5,7 @@ import { CustomLoader, Header } from '../../../components';
 import { connect } from 'react-redux';
 import { postRegisterUser, fetchUsersList, fetchSingleUser } from '../../../redux/actions';
 import MainPresenter from '../Presenter/MainPresenter';
+import OnOffNetNotice from '../../../apiManager/View/OnOffNetNotice';
 
 class MainScreen extends Component {
 
@@ -176,6 +177,7 @@ class MainScreen extends Component {
                 </View>
                 {this.renderLoader()}
                 {this.renderApiError()}
+                <OnOffNetNotice />
             </View>
 
         );
