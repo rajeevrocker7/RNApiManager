@@ -13,9 +13,13 @@ MVP:
     MVP kinda Pattern in Screens for Models, API result etc via redux, react-redux
 
 API Loader: 
-    Single loader for all API Calls in every Screen, rather than managing component loader state in every component in Application.         
+    Single loader for all API Calls in every Screen, rather than managing component loader state in every component in Application. 
 
-# Working GIF:
+OnOffNetNotice:
+    Component under ApiManager which checks for internet connection and shows a View respectively.
+
+# Sample
    ![](https://media.giphy.com/media/623P3cpqyWw2UTgfEB/giphy.gif)
    
-  
+# Note
+This repo is still under construction. Will be improved.  
